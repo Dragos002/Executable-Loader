@@ -48,3 +48,10 @@ The structures used by the interface are:
     - `PERM_W` - write permissions
     - `PERM_X` - execute permissions
   - `data` - an opaque pointer that you can use to attach your own information related to the current segment (for example, you can store information about the pages in the segment already mapped here).
+
+# Library interface
+The usage interface of the loader library is presented within the header file loader.h. It includes functions for initializing the loader (so_init_loader) and executing the binary (so_execute).
+
+The function so_init_loader performs the initialization of the library. Generally, within this function, the registration of the page fault handler is done in the form of a routine for handling the SIGSEGV signal or an exception handler.
+
+The function so_execute parses the binary specified by the path and runs the first instruction (entry point) of the executable.
